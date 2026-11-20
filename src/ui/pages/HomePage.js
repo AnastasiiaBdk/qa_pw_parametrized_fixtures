@@ -27,8 +27,6 @@ export class HomePage {
 
   async openGlobalFeed() {
     await this.step(`Open Global Feed`, async() => {
-      console.log(await this.globalFeed.count());
-      console.log(await this.globalFeed.isVisible());
       await this.globalFeed.click();
     });
   }
@@ -37,10 +35,6 @@ export class HomePage {
     await this.step(`Assert the article has correct title`, async () => {
       await expect(this.page.locator('h1').filter( {hasText : title} )).toContainText(title);
     });
-  }
-
-   authorLinkInArticleHeader(username) {
-    return this.page.getByRole('link', { username }).first();
   }
 
   async assertArticleAuthorNameIsVisible(title, username) {
